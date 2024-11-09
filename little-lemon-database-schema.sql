@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `little_lemon_db`.`customers` (
   UNIQUE INDEX `Email_UNIQUE` (`Email` ASC) VISIBLE,
   UNIQUE INDEX `ContactNumber_UNIQUE` (`ContactNumber` ASC) VISIBLE)
 ENGINE = InnoDB
-AUTO_INCREMENT = 1002
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `little_lemon_db`.`bookings` (
     FOREIGN KEY (`StaffID`)
     REFERENCES `little_lemon_db`.`staffs` (`StaffID`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 13
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `little_lemon_db`.`menuitems` (
   `Sides` VARCHAR(100) NULL DEFAULT NULL,
   PRIMARY KEY (`MenuItemID`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 73
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -99,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `little_lemon_db`.`menus` (
     FOREIGN KEY (`MenuItemID`)
     REFERENCES `little_lemon_db`.`menuitems` (`MenuItemID`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 73
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -123,7 +123,7 @@ CREATE TABLE IF NOT EXISTS `little_lemon_db`.`orders` (
     FOREIGN KEY (`CustomerID`)
     REFERENCES `little_lemon_db`.`customers` (`CustomerID`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 21001
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb3;
 
 
