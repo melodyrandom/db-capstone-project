@@ -234,5 +234,8 @@ A booking system for Little Lemon Restaurant is designed to implement the follow
 ## Data Analysis and Dashboard ##
 After importing the data into Tableau, further analysis is conducted to gain insights, and an interactive dashboard is developed for easy visualization and exploration of key metrics.
 <p>
+	<img src=https://github.com/melodyrandom/db-capstone-project/blob/main/little-lemon-dashboard-customers.png.
+</p>
+<p>
 	<img src = https://github.com/melodyrandom/db-capstone-project/blob/main/tableau-dashboard.png>
 </p>
