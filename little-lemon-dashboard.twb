@@ -3519,34 +3519,34 @@
     </action>
     <action caption='Filter 5 (generated)' name='[Action5_33A2A37B21504D5FAAE6E8AA4FC373F7]'>
       <activation auto-clear='true' type='on-select' />
-      <source dashboard='Dashboard 2' type='sheet' worksheet='Customer Sales' />
+      <source dashboard='Customers' type='sheet' worksheet='Customer Sales' />
       <command command='tsc:tsl-filter'>
         <param name='special-fields' value='all' />
-        <param name='target' value='Dashboard 2' />
+        <param name='target' value='Customers' />
       </command>
     </action>
     <action caption='Filter 6 (generated)' name='[Action6_B9E908CFB6F84320BC5D8B4424FA2A8F]'>
       <activation auto-clear='true' type='on-select' />
-      <source dashboard='Dashboard 2' type='sheet' worksheet='Sales Bubble Chart' />
+      <source dashboard='Customers' type='sheet' worksheet='Sales Bubble Chart' />
       <command command='tsc:tsl-filter'>
         <param name='special-fields' value='all' />
-        <param name='target' value='Dashboard 2' />
+        <param name='target' value='Customers' />
       </command>
     </action>
     <action caption='Filter 7 (generated)' name='[Action7_DDB3163272224F45B42AFB6C0BACAFF8]'>
       <activation auto-clear='true' type='on-select' />
-      <source dashboard='Dashboard 2' type='sheet' worksheet='Cuisine Sales &amp; Profit' />
+      <source dashboard='Customers' type='sheet' worksheet='Cuisine Sales &amp; Profit' />
       <command command='tsc:tsl-filter'>
         <param name='special-fields' value='all' />
-        <param name='target' value='Dashboard 2' />
+        <param name='target' value='Customers' />
       </command>
     </action>
     <action caption='Filter 8 (generated)' name='[Action8_051944F6279344FDBB5BB4A047A105D1]'>
       <activation auto-clear='true' type='on-select' />
-      <source dashboard='Dashboard 2' type='sheet' worksheet='Profit Chart' />
+      <source dashboard='Customers' type='sheet' worksheet='Profit Chart' />
       <command command='tsc:tsl-filter'>
         <param name='special-fields' value='all' />
-        <param name='target' value='Dashboard 2' />
+        <param name='target' value='Customers' />
       </command>
     </action>
   </actions>
@@ -4224,7 +4224,7 @@
     </worksheet>
   </worksheets>
   <dashboards>
-    <dashboard enable-sort-zone-taborder='true' name='Dashboard 2'>
+    <dashboard enable-sort-zone-taborder='true' name='Customers'>
       <style />
       <size maxheight='800' maxwidth='1000' minheight='800' minwidth='1000' />
       <zones>
@@ -4277,8 +4277,8 @@
         <devicelayout auto-generated='true' name='Phone'>
           <size maxheight='1200' minheight='1200' sizing-mode='vscroll' />
           <zones>
-            <zone h='100000' id='15' type-v2='layout-basic' w='100000' x='0' y='0'>
-              <zone h='98000' id='14' param='vert' type-v2='layout-flow' w='98400' x='800' y='1000'>
+            <zone h='100000' id='17' type-v2='layout-basic' w='100000' x='0' y='0'>
+              <zone h='98000' id='16' param='vert' type-v2='layout-flow' w='98400' x='800' y='1000'>
                 <zone fixed-size='280' h='55000' id='3' is-fixed='true' name='Customer Sales' w='49200' x='800' y='1000'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
@@ -4381,8 +4381,8 @@
         <devicelayout auto-generated='true' name='Phone'>
           <size maxheight='950' minheight='950' sizing-mode='vscroll' />
           <zones>
-            <zone h='100000' id='25' type-v2='layout-basic' w='100000' x='0' y='0'>
-              <zone h='98000' id='24' param='vert' type-v2='layout-flow' w='98400' x='800' y='1000'>
+            <zone h='100000' id='27' type-v2='layout-basic' w='100000' x='0' y='0'>
+              <zone h='84000' id='26' param='vert' type-v2='layout-flow' w='84000' x='8000' y='8000'>
                 <zone fixed-size='117' h='15625' id='3' is-fixed='true' name='Total Sales' w='98400' x='800' y='1000'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
@@ -4589,6 +4589,29 @@
       </viewpoint>
       <simple-id uuid='{5EA2A579-1687-4502-B027-982DC4918911}' />
     </window>
+    <window class='dashboard' maximized='true' name='Customers'>
+      <viewpoints>
+        <viewpoint name='Cuisine Sales &amp; Profit'>
+          <zoom type='entire-view' />
+          <highlight>
+            <color-one-way>
+              <field>[federated.0m52zxo0f50rh01cj4f8x0mltpob].[yr:Order Date:ok]</field>
+            </color-one-way>
+          </highlight>
+        </viewpoint>
+        <viewpoint name='Customer Sales'>
+          <zoom type='entire-view' />
+        </viewpoint>
+        <viewpoint name='Profit Chart'>
+          <zoom type='entire-view' />
+        </viewpoint>
+        <viewpoint name='Sales Bubble Chart'>
+          <zoom type='entire-view' />
+        </viewpoint>
+      </viewpoints>
+      <active id='-1' />
+      <simple-id uuid='{B88FC687-D9BE-4383-BC0F-91EEB17F4113}' />
+    </window>
     <window class='worksheet' name='Customer Sales'>
       <cards>
         <edge name='left'>
@@ -4655,7 +4678,7 @@
       </viewpoint>
       <simple-id uuid='{14B7686F-8514-446A-B923-833F57E6652B}' />
     </window>
-    <window class='worksheet' maximized='true' name='Sales Bubble Chart'>
+    <window class='worksheet' name='Sales Bubble Chart'>
       <cards>
         <edge name='left'>
           <strip size='160'>
@@ -4691,29 +4714,6 @@
         </highlight>
       </viewpoint>
       <simple-id uuid='{5EA05365-35D9-4643-9927-19EF3087BD7C}' />
-    </window>
-    <window class='dashboard' name='Dashboard 2'>
-      <viewpoints>
-        <viewpoint name='Cuisine Sales &amp; Profit'>
-          <zoom type='entire-view' />
-          <highlight>
-            <color-one-way>
-              <field>[federated.0m52zxo0f50rh01cj4f8x0mltpob].[yr:Order Date:ok]</field>
-            </color-one-way>
-          </highlight>
-        </viewpoint>
-        <viewpoint name='Customer Sales'>
-          <zoom type='entire-view' />
-        </viewpoint>
-        <viewpoint name='Profit Chart'>
-          <zoom type='entire-view' />
-        </viewpoint>
-        <viewpoint name='Sales Bubble Chart'>
-          <zoom type='entire-view' />
-        </viewpoint>
-      </viewpoints>
-      <active id='3' />
-      <simple-id uuid='{B88FC687-D9BE-4383-BC0F-91EEB17F4113}' />
     </window>
     <window class='worksheet' name='Cuisine Sales &amp; Profit'>
       <cards>
@@ -5027,7 +5027,7 @@
       I5pdk0w6haLp1PZ3SOZKJOKx197rvRx3OBxmaPapVWvkiiU63T72sEdufvnVMzNgDbp0hi6a
       PcANxRm066SzJZKJKP8f6POH5tu2tW4AAAAASUVORK5CYII=
     </thumbnail>
-    <thumbnail height='192' name='Dashboard 2' width='192'>
+    <thumbnail height='192' name='Customers' width='192'>
       iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAACXBIWXMAAA7DAAAOwwHHb6hk
       AAAgAElEQVR4nOy9eZAk2XnY98uj7vvq6qP6nO6e+9qd2cViFjcBkCZBggRtUmE5KJmHJdNW
       hMO2ZIUUMsM2QQIkRVE0wxJJk0HJNE8zQBCkQBBYAIvd2Z17Zueenr6ru7ru+8zKTP9RPV1V
