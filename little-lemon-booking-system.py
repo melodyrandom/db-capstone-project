@@ -18,100 +18,97 @@ def create_connection():
             print(err)
         return None
 
+def call_procedure(procedure_name, *args):
+    connection = create_connection()
+    if connection is None:
+        return
+    
+    try:
+        cursor = connection.cursor()
+        cursor.callproc(procedure_name, args)
 
-# Get maximum quantity from Order table
+        for result in cursor.stored_results():
+            print(result.fetchall())
+    except connector.errors as err:
+        print(f"Error executing {procedure_name}: {err}")
+        return None
+
+    finally:
+        cursor.close()
+        connection.close()
+
+
 def get_max_quantity():
-    connection = create_connection()
-    if connection is None:
-        return
+    result = call_procedure('GetMaxQuantity')
+    if result:
+        print(result[0])  # Print the first result row
 
-    try:
-        cursor = connection.cursor()
-        cursor.callproc('GetMaxQuantity')
-
-        for result in cursor.stored_results():
-            print(result.fetchone())
-
-    finally:
-        cursor.close()
-        connection.close()
-
-
-# Manage booking
 def manage_booking(booking_date, table_number):
-    connection = create_connection()
-    if connection is None:
-        return
+    results = call_procedure('ManageBooking', booking_date, table_number)
+    if results:
+        print(results)
 
-    try:
-        cursor = connection.cursor()
-        cursor.callproc("ManageBooking",(booking_date, table_number))
-
-        for result in cursor.stored_results():
-            print(result.fetchall())
-
-    finally:
-        cursor.close()
-        connection.close()
-        
-
-#Update booking
 def update_booking(booking_id, booking_date):
-    connection = create_connection()
-    if connection is None:
-        return
-
-    try:
-        cursor = connection.cursor()
-        cursor.callproc("UpdateBooking", (booking_id, booking_date))
-        for result in cursor.stored_results():
-            print(result.fetchall())
-   
-    finally:
-        cursor.close()
-        connection.close()
+    results = call_procedure('UpdateBooking', booking_id, booking_date)
+    if results:
+        print(results)
 
 def add_booking(booking_id, customer_id, booking_date, table_number):
+    results = call_procedure('AddBooking', booking_id, customer_id, booking_date, table_number)
+    if results:
+        print(results)
+
+def cancel_booking(booking_id):
+    results = call_procedure('CancelBooking', booking_id)
+    if results:
+        print(results)
+
+def show_all_tables():
     connection = create_connection()
     if connection is None:
         return
-
+    
     try:
-        with connection.cursor() as cursor:
-            cursor.callproc("AddBooking", (booking_id, customer_id, booking_date, table_number))
-            
-            connection.commit()
+        cursor = connection.cursor()
+        show_table_query = """SHOW tables"""
+        cursor.execute(show_table_query)
 
-            for result in cursor.stored_results():
-                print(result.fetchall())
+        tables = cursor.fetchall()
 
-    except connector.Error as err:
-            print("Error adding booking: ", err)
-   
+        for table in tables:
+            print(table[0])
+
+    except connector.errors as err:
+        print("Error querying tables: ", err)
+        return None
+
     finally:
-        connection.close()       
+        cursor.close()
+        connection.close()
 
-
-# Cancel booking
-def cancel_booking(booking_id):
-    connection = create_connection()  
+def show_customer_order_above60():
+    connection = create_connection()
     if connection is None:
         return
-
+    
     try:
+        cursor = connection.cursor()
+        show_customer_query = """SELECT DISTINCT FullName, ContactNumber, Email 
+        FROM Customers
+        JOIN Orders ON Customers.CustomerID = Orders.CustomerID
+        WHERE Orders.TotalCost > 60"""
+        cursor.execute(show_customer_query)
 
-        with connection.cursor() as cursor:
-            cursor.callproc("CancelBooking", (booking_id,))
-        
-        connection.commit()
+        customers = cursor.fetchall()
 
-        for result in cursor.stored_results():
-            print(result.fetchall())
+        for customer in customers:
+            print(customer)
 
-    except connector.Error as err:
-        print("Error cancelling booking:", err)
-
+    except connector.errors as err:
+        print("Error fetching details: ",err)
+    
     finally:
+        cursor.close()
         connection.close()
 
 
@@ -120,9 +117,10 @@ connection = create_connection()
 
 # If the connection was successful, add a booking
 if connection:
-    #get_max_quantity()
-    #manage_booking("2022-10-11",5)
-    #update_booking(12,"2022-10-16")
-    #add_booking(13, 10, "2022-10-31", 5)
+    get_max_quantity()
+    manage_booking("2022-10-11",5)
+    update_booking(12,"2022-10-16")
+    add_booking(13, 10, "2022-10-31", 5)
     cancel_booking(12)
-
+    show_all_tables()
+    show_customer_order_above60()
